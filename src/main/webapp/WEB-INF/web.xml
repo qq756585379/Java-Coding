@@ -7,4 +7,12 @@
 
     <display-name>KLXCManager</display-name>
 
+    <session-config>
+        <session-timeout>20</session-timeout>
+    </session-config>
+
+    <listener>
+        <listener-class>com.listener.SessionListener</listener-class>
+    </listener>
+
 </web-app>
