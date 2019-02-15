@@ -15,7 +15,7 @@
     <aop:config>
         <!-- 这是定义一个切面，切面是切点和通知的集合-->
         <aop:aspect id="do" ref="PermissionVerification">
-            <!-- 定义切点 ，后面是expression语言，表示包括该接口中定义的所有方法都会被执行-->
+            <!-- 定义切点 ，后面是expression语言，表示包括该接口中定义的所有方法都会发出通知-->
             <aop:pointcut id="point" expression="execution(* com.service.Subject.*(..))"/>
             <!-- 定义通知 -->
             <aop:before method="canLogin" pointcut-ref="point"/>
