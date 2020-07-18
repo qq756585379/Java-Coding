@@ -1,28 +1,15 @@
 package com.coding.concurrent02;
 
+import lombok.Data;
+
+@Data
 public class MyTask implements Runnable {
 
     private int taskId;
     private String taskName;
 
-    public MyTask(int taskId, String taskName) {
+    MyTask(int taskId, String taskName) {
         this.taskId = taskId;
-        this.taskName = taskName;
-    }
-
-    public int getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
-    }
-
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
 

@@ -12,17 +12,15 @@ import java.util.concurrent.TimeoutException;
 
 public class RabbitMQTest2 {
 
-    static ConnectionFactory connectionFactory;
-    static Connection connection;
+    private static ConnectionFactory connectionFactory;
+    private static Connection connection;
 
     static {
         connectionFactory = new ConnectionFactory();
         connectionFactory.setHost("localhost");
         try {
             connection = connectionFactory.newConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
+        } catch (IOException | TimeoutException e) {
             e.printStackTrace();
         }
     }
@@ -36,7 +34,7 @@ public class RabbitMQTest2 {
                 .build();
 
         // 设置队列的消息过期时间的方法：
-        Map<String, Object> argss = new HashMap<String, Object>();
+        Map<String, Object> argss = new HashMap<>();
         argss.put("x-message-ttl", 6000); // TTL，6秒后没有被消费则被发送到DLX
         Channel channel = connection.createChannel();
         channel.queueDeclare("TEST_TTL_QUEUE", false, false, false, argss);
@@ -63,13 +61,12 @@ public class RabbitMQTest2 {
         Channel channel = connection.createChannel();
 
         // 指定队列的死信交换机
-        Map<String, Object> arguments = new HashMap<String, Object>();
+        Map<String, Object> arguments = new HashMap<>();
         arguments.put("x-dead-letter-exchange", "DLX_EXCHANGE");
         arguments.put("x-expires", "9000"); // 设置队列的TTL
 
         // durable：是否要持久化；exclusive：如果设置true的化，队列将变成私有的，只有创建队列的应用程序才能够消费队列消息；
         // queueDeclare(String queue, boolean durable, boolean exclusive, Map<String, Object> arguments);
-
 
         // 声明队列（默认交换机AMQP default，Direct）
         channel.queueDeclare("TEST_DLX_QUEUE", false, false, false, arguments);

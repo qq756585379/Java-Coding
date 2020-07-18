@@ -16,7 +16,7 @@ public class UseCyclicBarrier {
         private CyclicBarrier barrier;
         private String name;
 
-        public Runner(CyclicBarrier barrier, String name) {
+        Runner(CyclicBarrier barrier, String name) {
             this.barrier = barrier;
             this.name = name;
         }
@@ -27,9 +27,7 @@ public class UseCyclicBarrier {
                 Thread.sleep(1000 * (new Random()).nextInt(5));
                 System.out.println(name + " 准备OK.");
                 barrier.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (BrokenBarrierException e) {
+            } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
             System.out.println(name + " Go!!");

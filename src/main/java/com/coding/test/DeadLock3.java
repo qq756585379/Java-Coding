@@ -45,6 +45,23 @@ public class DeadLock3 {
         }
     }
 
+    private static boolean tryLock(Lock lock) {
+        try {
+            String tName = Thread.currentThread().getName();
+            //获取不到锁，就等 5 秒，如果 5 秒后还是获取不到就返回 false
+            if (lock.tryLock(5000, TimeUnit.MILLISECONDS)) {
+                System.out.println(tName + "获取到锁!");
+                return true;
+            } else {
+                System.out.println(tName + "获取不到锁!");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         final Lock lock = new ReentrantLock();
         final DeadLock3 td1 = new DeadLock3();
@@ -83,22 +100,5 @@ public class DeadLock3 {
 
         t1.start();
         t2.start();
-    }
-
-    private static boolean tryLock(Lock lock) {
-        try {
-            String tName = Thread.currentThread().getName();
-            //获取不到锁，就等 5 秒，如果 5 秒后还是获取不到就返回 false
-            if (lock.tryLock(5000, TimeUnit.MILLISECONDS)) {
-                System.out.println(tName + "获取到锁!");
-                return true;
-            } else {
-                System.out.println(tName + "获取不到锁!");
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 }

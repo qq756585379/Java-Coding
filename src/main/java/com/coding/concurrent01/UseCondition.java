@@ -10,7 +10,7 @@ public class UseCondition {
 
     private Condition condition = lock.newCondition();
 
-    public void method1() {
+    private void method1() {
         try {
             lock.lock();
             System.out.println("当前线程：" + Thread.currentThread().getName() + "进入等待状态..");
@@ -25,7 +25,7 @@ public class UseCondition {
         }
     }
 
-    public void method2() {
+    private void method2() {
         try {
             lock.lock();
             System.out.println("当前线程：" + Thread.currentThread().getName() + "进入..");

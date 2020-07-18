@@ -1,12 +1,10 @@
-package com.coding.test;
+package com.coding.queue;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.DelayQueue;
-import java.util.concurrent.Delayed;
-import java.util.concurrent.TimeUnit;
 
-public class DelayQueueTest {
+public class DelayQueueTest2 {
 
     private static DelayQueue<OrderDelay> queue = new DelayQueue<>();
 
@@ -52,37 +50,3 @@ public class DelayQueueTest {
     }
 }
 
-class OrderDelay implements Delayed {
-
-    private int orderId;
-
-    private Date orderTime;
-
-    private static final int expireTime = 15000;
-
-    @Override
-    public long getDelay(TimeUnit unit) {
-        return orderTime.getTime() + expireTime - new Date().getTime();
-    }
-
-    @Override
-    public int compareTo(Delayed o) {
-        return this.orderTime.getTime() - ((OrderDelay) o).orderTime.getTime() > 0 ? 1 : -1;
-    }
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public Date getOrderTime() {
-        return orderTime;
-    }
-
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
-    }
-}

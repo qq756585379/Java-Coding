@@ -1,6 +1,6 @@
-package com.coding.test;
+package com.coding.thread;
 
-public class ThreadTest2 {
+public class ProducerTest {
 
     private String name;
 
@@ -40,49 +40,16 @@ public class ThreadTest2 {
         //唤醒生产者，生产资源
         this.notifyAll();
     }
-}
 
-//生产者
-class Producer implements Runnable {
-
-    private ThreadTest2 res;
-
-    Producer(ThreadTest2 res) {
-        this.res = res;
-    }
-
-    @Override
-    public void run() {
-        while (true) {
-            res.set("商品");
-        }
-    }
-}
-
-//消费者消费资源
-class Consumer implements Runnable {
-
-    private ThreadTest2 res;
-
-    Consumer(ThreadTest2 res) {
-        this.res = res;
-    }
-
-    @Override
-    public void run() {
-        while (true) {
-            res.out();
-        }
-    }
-}
-
-class ProducerConsumerDemo {
     public static void main(String[] args) {
-        ThreadTest2 r = new ThreadTest2();
+        ProducerTest r = new ProducerTest();
+
         Producer pro = new Producer(r);
         Consumer con = new Consumer(r);
+
         Thread t1 = new Thread(pro);
         Thread t2 = new Thread(con);
+
         t1.start();
         t2.start();
     }

@@ -6,19 +6,19 @@ import java.util.concurrent.TimeUnit;
 
 public class UseThreadPoolExecutor1 {
 
+    /**
+     * 在使用有界队列时，若有新的任务需要执行，如果线程池实际线程数小于corePoolSize，则优先创建线程
+     * 若大于corePoolSize，则会将任务加入队列，
+     * 若队列已满，则在总线程数不大于maximumPoolSize的前提下，创建新的线程，
+     * 若线程数大于maximumPoolSize，则执行拒绝策略。或其他自定义方式。
+     */
     public static void main(String[] args) {
-        /**
-         * 在使用有界队列时，若有新的任务需要执行，如果线程池实际线程数小于corePoolSize，则优先创建线程
-         * 若大于corePoolSize，则会将任务加入队列，
-         * 若队列已满，则在总线程数不大于maximumPoolSize的前提下，创建新的线程，
-         * 若线程数大于maximumPoolSize，则执行拒绝策略。或其他自定义方式。
-         */
         ThreadPoolExecutor pool = new ThreadPoolExecutor(
                 1,               //coreSize
                 2,           //MaxSize
                 60,            //60
                 TimeUnit.SECONDS,
-                new ArrayBlockingQueue<Runnable>(3)            //指定一种队列 （有界队列）
+                new ArrayBlockingQueue<>(3)            //指定一种队列 （有界队列）
                 //new LinkedBlockingQueue<Runnable>()
                 , new MyRejected()
                 //, new DiscardOldestPolicy()

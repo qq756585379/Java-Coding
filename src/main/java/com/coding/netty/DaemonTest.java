@@ -38,7 +38,6 @@ public class DaemonTest {
         }, "Daemon-T");
         // 所有非守护线程全部执行完，进程才会退出
         t.setDaemon(true);
-        // t.setDaemon(false);
         t.start();
         TimeUnit.SECONDS.sleep(2);
         System.out.println("系统退出，程序执行" + (System.nanoTime() - startTime) / 1000 / 1000 / 1000 + "s");

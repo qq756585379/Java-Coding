@@ -11,9 +11,9 @@ import java.util.HashMap;
 public class SessionListener implements HttpSessionBindingListener {
 
     //保存username和session的映射
-    public static HashMap<String, HttpSession> MAP1 = new HashMap<String, HttpSession>();
+    private static HashMap<String, HttpSession> MAP1 = new HashMap<>();
     //保存sessionID和username的映射
-    public static HashMap MAP2 = new HashMap();
+    private static HashMap MAP2 = new HashMap();
 
     @Override
     public void valueBound(HttpSessionBindingEvent event) {
@@ -54,9 +54,7 @@ public class SessionListener implements HttpSessionBindingListener {
      * 判断用户是否重复登录
      */
     @RequestMapping(value = "/checkUserOnline")
-    @ResponseBody
-    public void checkUserOnline(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    public void checkUserOnline(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
         String msg = "";

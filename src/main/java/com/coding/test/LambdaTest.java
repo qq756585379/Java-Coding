@@ -11,7 +11,6 @@ public class LambdaTest {
     public static void main(String[] args) {
         Predicate<String> startsWithJ = (n) -> n.startsWith("J");
         Predicate<String> fourLetterLong = (n) -> n.length() == 4;
-
     }
 
     private void test1() {

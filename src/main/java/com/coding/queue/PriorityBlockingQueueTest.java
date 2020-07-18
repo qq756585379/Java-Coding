@@ -11,7 +11,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 public class PriorityBlockingQueueTest {
 
     public static void main(String[] args) {
-        PriorityBlockingQueue<Person> queue = new PriorityBlockingQueue<Person>(3, ((o1, o2) -> {
+        PriorityBlockingQueue<Person> queue = new PriorityBlockingQueue<>(3, ((o1, o2) -> {
             if (o1.getAge() > o2.getAge())
                 return 1;
             else if (o1.getAge() < o2.getAge())

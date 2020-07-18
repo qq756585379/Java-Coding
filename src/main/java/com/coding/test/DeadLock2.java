@@ -64,7 +64,7 @@ public class DeadLock2 {
             public void run() {
                 try {
                     //让t2等待t1执行完,核心代码，让t1执行完后t2才会执行
-                    t1.join();
+                    t1.join();//释放自己的锁
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

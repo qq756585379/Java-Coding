@@ -1,4 +1,4 @@
-package com.coding.test;
+package com.coding.queue;
 
 import java.util.concurrent.SynchronousQueue;
 
@@ -9,7 +9,7 @@ public class SynchronousQueueDemo {
      * 可以认为这是一种线程与线程间一对一传递消息的模型。
      */
     public static void main(String[] args) throws InterruptedException {
-        final SynchronousQueue<Integer> queue = new SynchronousQueue<Integer>();
+        final SynchronousQueue<Integer> queue = new SynchronousQueue<>();
 
         Thread putThread = new Thread(new Runnable() {
             @Override

@@ -3,6 +3,7 @@ package com.coding.test;
 import java.util.Optional;
 
 public class OptionalDemo {
+
     public static void main(String[] args) throws Throwable {
         //创建 Optional 实例，也可以通过方法返回值得到。
         Optional<String> name = Optional.of("Sanaulla");

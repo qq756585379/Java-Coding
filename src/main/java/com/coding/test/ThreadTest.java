@@ -38,8 +38,7 @@ public class ThreadTest {
         Thread t2 = new Thread(new Runnable() {
             public void run() {
                 try {
-                    //等待线程 1 完成然后取值
-                    t1.join();
+                    t1.join();//当前线程挂起，等t1线程完成
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -51,7 +50,7 @@ public class ThreadTest {
         t2.start();
 
         // 写一个 ArrayList 的动态代理类
-        final List<String> list = new ArrayList<String>();
+        final List<String> list = new ArrayList<>();
         List<String> proxyInstance = (List<String>) Proxy.newProxyInstance(list.getClass().getClassLoader(),
                 list.getClass().getInterfaces(),
                 new InvocationHandler() {

@@ -8,17 +8,16 @@ import java.util.HashMap;
 import java.util.concurrent.TimeoutException;
 
 public class RabbitMQTest {
-    static ConnectionFactory connectionFactory;
-    static Connection connection;
+
+    private static ConnectionFactory connectionFactory;
+    private static Connection connection;
 
     static {
         connectionFactory = new ConnectionFactory();
         connectionFactory.setHost("localhost");
         try {
             connection = connectionFactory.newConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
+        } catch (IOException | TimeoutException e) {
             e.printStackTrace();
         }
     }
@@ -41,7 +40,7 @@ public class RabbitMQTest {
         channel.exchangeDeclare("orderExchange", "direct", true);//定义一个交换机，路由类型为direct，所有的订单会塞给此交换机
         channel.exchangeDeclare("orderDelayExchange", "direct", true);//定义一个交换机，路由类型为direct，延迟的订单会塞给此交换机
 
-        HashMap<String, Object> arguments = new HashMap<String, Object>();
+        HashMap<String, Object> arguments = new HashMap<>();
         arguments.put("x-dead-letter-exchange", "orderDelayExchange");//申明死信交换机是名称为orderDelayExchange的交换机
         //定义一个名称为order_queue的队列，绑定上面定义的参数，这样就告诉rabbit此队列延迟的消息，发送给orderDelayExchange交换机
         channel.queueDeclare("order_queue", true, false, false, arguments);

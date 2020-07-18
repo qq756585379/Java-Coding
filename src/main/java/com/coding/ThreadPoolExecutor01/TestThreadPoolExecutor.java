@@ -13,7 +13,7 @@ public class TestThreadPoolExecutor {
                 10,                                               //空闲数值
                 TimeUnit.SECONDS,                                //空闲时间单位
                 //new ArrayBlockingQueue<Runnable>(3)
-                new LinkedBlockingQueue<Runnable>()
+                new LinkedBlockingQueue<>()
                 //new MyRejected()
         );
 

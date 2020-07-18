@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MyBeanPostProcess implements BeanPostProcessor {
+
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         return Proxy.newProxyInstance(MyBeanPostProcess.class.getClassLoader(), bean.getClass().getInterfaces(), new MyInvationHandler(bean));

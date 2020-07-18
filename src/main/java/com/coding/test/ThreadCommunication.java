@@ -34,20 +34,14 @@ public class ThreadCommunication {
             }
         });
 
-        Thread threadB = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                acquire();
-                System.out.println(Thread.currentThread().getName() + "获取到 num 的值为:" + num);
-            }
+        Thread threadB = new Thread(() -> {
+            acquire();
+            System.out.println(Thread.currentThread().getName() + "获取到 num 的值为:" + num);
         });
 
-        Thread threadC = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                acquire();
-                System.out.println(Thread.currentThread().getName() + "获取到 num 的值为:" + num);
-            }
+        Thread threadC = new Thread(() -> {
+            acquire();
+            System.out.println(Thread.currentThread().getName() + "获取到 num 的值为:" + num);
         });
 
         //同时开启3个线程

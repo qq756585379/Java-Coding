@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 public class CglibMethodInterceptTest {
 
     public static void main(String[] args) {
-//        cglibTest1();
+        cglibTest1();
         cglibTest2();
     }
 
@@ -53,7 +53,6 @@ public class CglibMethodInterceptTest {
         CallbackFilter callbackFilter = new CallbackFilter() {
             @Override
             public int accept(Method method) {
-                int flag = 0;
                 if ("getName".equals(method.getName())) {
                     System.err.println("我将此方法过滤掉了，不对该方法进行拦截");
                     return 1;
@@ -69,7 +68,7 @@ public class CglibMethodInterceptTest {
         System.err.println("**********************************");
         System.err.println(student.getName());
         System.err.println("**********************************");
-//        System.err.println(student.getRename());
+        System.err.println(student.getName());
         System.err.println("**********************************");
     }
 }

@@ -19,10 +19,10 @@ public class UseThreadPoolExecutor2 implements Runnable {
     }
 
     public static void main(String[] args) throws Exception {
-        //System.out.println(Runtime.getRuntime().availableProcessors());
-        BlockingQueue<Runnable> queue =
-                //new LinkedBlockingQueue<Runnable>();
-                new ArrayBlockingQueue<Runnable>(10);
+        System.out.println(Runtime.getRuntime().availableProcessors());
+
+        // BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
+        BlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(10);
 
         ExecutorService executor = new ThreadPoolExecutor(
                 5,         //core
